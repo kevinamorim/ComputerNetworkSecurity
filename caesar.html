@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8" />
+	<title>Caesar's Cipher</title>
+	<link rel="stylesheet" href="content/css/site.css" />
+</head>
+
+<body>
+
+	<header>
+		<h1> Le Caesar Cipher </h1>
+		
+		<img src="content/img/caesar.jpg" width="20%" />
+	</header>
+	
+	<select id="shift">
+		<option value="1">1</option>
+		<option value="2">2</option>
+		<option value="3">3</option>
+	</select>
+	
+	<input type="text" id="textToCipher" />
+	<input type="button" onclick="say_hello_2()" value="Cipher!"/>
+	<input type="button" onclick="decipher()" value="Decipher!"/>
+	
+	<input id="cipher" type="text" readonly />
+	
+	
+	<footer>
+		
+		Developed by Kevin Amorim - 2015 
+		
+	</footer>
+	
+	<script src="content/scripts/scripts.js"></script> 
+	
+</body>
+</html>

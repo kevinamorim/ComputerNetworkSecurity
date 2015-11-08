@@ -1,9 +1,33 @@
 body {
+	background-color: black;
+	color: white;
 	width: 80%;
 	margin: auto;
 	margin-top: 10%;
 	padding: auto;
 	text-align: center;
+}
+
+li {
+	list-style: none;
+	font-size: 2em;
+	margin: 3em;
+}
+
+a {
+	padding: 1em;
+	border: solid 1px white;
+	background-color: red;
+	color: white;
+	text-decoration: none;
+}
+
+a:hover {
+	background-color: #780000;
+}
+
+input {
+	font-weight: bold;
 }
 
 

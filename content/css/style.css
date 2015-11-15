@@ -1,0 +1,57 @@
+body {
+	width: 60%;
+	margin: auto;
+	padding: auto;
+	margin-top: 10px;
+	text-align: center;
+	border-top: 5px solid #e56038;
+	background-color: #989898;
+	color: white;
+	font-family: 'Ubuntu', sans-serif;
+}
+
+header {
+	margin-bottom: 20px;
+}
+
+h1 {
+	font-family: 'Ubuntu', sans-serif;
+	font-size: 40px;
+}
+
+input {
+	font-family: 'Open Sans', sans-serif;
+}
+
+input[type=text] {
+	width: 250px;
+	height: 30px;
+	font-weight: bold;
+	text-transform: uppercase;
+	text-align: center;
+}
+
+input[type=radio] {
+	margin: 10px;
+}
+
+select {
+	width: 250px;
+	height: 34px;
+	text-align: center;
+	font-size: 15px;
+}
+
+.box {
+	margin: 5px;
+	padding: 5px;
+	padding-bottom: 10px;
+	font-size: 25px;
+	border-radius: 5px;
+	border-top: solid 2px #e56038;
+}
+
+#result {
+	margin: 10px;
+	width: 400px;
+}

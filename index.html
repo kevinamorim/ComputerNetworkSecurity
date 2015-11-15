@@ -1,27 +1,93 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<meta charset="utf-8" >
+	<meta charset="UTF-8" >
+	<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 	<title>Computer Network Security</title>
-	<link rel="stylesheet" href="content/css/site.css" />
+	
+	<!-- Styles -->
+	<link rel="stylesheet" href="content/css/reset.css" type="text/css" media="screen" />
+	<link rel="stylesheet" href="content/css/style.css" type="text/css" media="screen" />
+	
+	<!-- Fonts -->
+	<link href='https://fonts.googleapis.com/css?family=Ubuntu:400,700' rel='stylesheet' type='text/css'>
+	
+	<!-- jQuery -->
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+	<script type="text/javascript">window.jQuery || document.write('<script type="text\/javascript" src="content/js/1.11.3.jquery.min"><\/script>')</script>
+
 </head>
 
 <body>
 
-	<header>
+	<div id="wrap">
+	
+		<header>
 		<h1> Computer Network Security </h1>
-	</header>
+		<button type="button" onclick="about()">who did this shit?</button> 
+		</header>
+		
+		<div id="method" class="box">
+			<input type="radio" id="caesar" name="method" value="caesar" checked><label for="caesar">Caesar</label>
+			<input type="radio" id="vigenere" name="method" value="vigenere"><label for="vigenere">Vigenére</label>
+		</div>
+		
+		<div class="box">
+			<input type="radio" id="cipher" name="action" value="cipher" checked><label for="cipher">Cipher</label>
+			<input type="radio" id="decipher" name="action" value="decipher"><label for="decipher">Decipher</label>
+		</div>
+
+		<div>
+			<input type="text" name="key" placeholder="Enter a key..." />
+			<select id="offset" name="offset">
+				<option value="1">1</option>
+				<option value="2">2</option>
+				<option value="3">3</option>
+				<option value="15">15</option>
+			</select>
+			<input type="text" name="message" id="textToCipher" placeholder="Choose cipher or decipher!!!"/>
+		</div>
+
+		
+		<div>
+			<input type="text" id="result" placeholder="Result" readonly />
+		</div>
 	
-	<nav>
-		<ul>
-			<li><a href="caesar.html">Caesar's</a></li>
-			<li><a href="vigenere.html">Vigenère</a></li>
-		</ul>
-	</nav>
+	</div>
 	
-	<footer>	
-		Developed by Kevin Amorim - 2015 
-	</footer>
+	<script src="content/scripts/scripts.js"></script> 
+	<script>
+		document.getElementsByName('key')[0].style.display = 'none';
+		var rad = document.getElementsByName('action');
+		var prev = null;
+		for(var i = 0; i < rad.length; i++) {
+			rad[i].onclick = function() {
+				if(this.value == 'cipher') 
+					document.getElementsByName('message')[0].placeholder = 'Enter plain text to cipher...';
+				else 
+					document.getElementsByName('message')[0].placeholder = 'Enter cipher to decipher...';
+			};
+		}
+		
+		var methods = document.getElementsByName('method');
+		for(var i = 0; i < methods.length; i++) {
+			methods[i].onclick = function() {
+				if(this.value == 'vigenere') {
+					document.getElementsByName('offset')[0].style.display = 'none';
+					document.getElementsByName('key')[0].style.display = 'inline';
+				}	
+				else if(this.value == 'caesar') {
+					document.getElementsByName('key')[0].style.display = 'none';
+					document.getElementsByName('offset')[0].style.display = 'inline';
+				}
+				else {
+					document.getElementsByName('key')[0].style.display = 'none';
+					document.getElementsByName('offset')[0].style.display = 'none';
+				}
+			}
+		}
+		
+	</script>
 	
 </body>
 </html>

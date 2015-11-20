@@ -1,96 +1,51 @@
-function cipher(plainText, key) {
-	
+// str  -> String to process
+// key  -> Key used to cipher/decipher
+// mode -> 0 - decipher ; 1 - cipher
+function process(str, key, mode) {
+
 	var result = "";
-	
-	for(var i = 0; i < plainText.length; i++) {
-		var keyCode = key.charCodeAt(i % key.length) - 65;
-		var charCodeOriginal = plainText.charCodeAt(i);
+	var k = 0;
+	for(var i = 0; i < str.length; i++) {
+
+		var charCodeOriginal = str.charCodeAt(i);
+		if(charCodeOriginal < 65 || charCodeOriginal > 90) continue;
+
+		var keyCode = key.charCodeAt(k % key.length) - 65;
+		k++;
+		
 		charCodeOriginal = charCodeOriginal - 65;
-		var newCode = ((charCodeOriginal + keyCode) % 26) + 65;
+
+		var newCode = (mode ? cipher(charCodeOriginal, keyCode) : decipher(charCodeOriginal, keyCode));
+
 		result += String.fromCharCode(newCode);
 	}
 	
 	return result;
-}
-
-function decipher(cipherText, key) {
-	
-	var result = "";
-	
-	for(var i = 0; i < cipherText.length; i++) {
-		var keyCode = key.charCodeAt(i % key.length) - 65;
-		var charCodeOriginal = cipherText.charCodeAt(i);
-		charCodeOriginal = charCodeOriginal - 65;
-		var newCode = ((((charCodeOriginal - keyCode) % 26) + 26) % 26) + 65;
-		result += String.fromCharCode(newCode);
-	}
-	
-	return result;
-}
-
-function cipher_caesar() {
-	
-	var e = document.getElementById("shift");
-	var shiftNumber = parseInt(e.options[e.selectedIndex].value);
-	var key = String.fromCharCode(shiftNumber + 65);
-	
-	var strToCipher = document.getElementById("textToCipher").value;
-	var result = cipher(strToCipher, key);
-		
-	var box = document.getElementById('cipher');
-	box.value = result;
-}
-
-function decipher_caesar() {
-	
-	var e = document.getElementById("shift");
-	var shiftNumber = parseInt(e.options[e.selectedIndex].value);
-	var key = String.fromCharCode(shiftNumber + 65);
-	
-	var strToCipher = document.getElementById("textToCipher").value;
-	var result = decipher(strToCipher, key);
-	
-	var box = document.getElementById('cipher');
-	box.value = result;
 	
 }
 
-function cipher_vigenere() {
-	
-	var key = document.getElementById("key").value;
-	var strToCipher = document.getElementById("textToCipher").value;
-	var result = cipher(strToCipher, key);
-
-	var box = document.getElementById('cipher');
-	box.value = result;
-		
+function cipher(strCharCode, keyCharCode) {
+	return ((strCharCode + keyCharCode) % 26) + 65;;
 }
 
-function decipher_vigenere() {
-	
-	var key = document.getElementById("key").value;
-	var strToCipher = document.getElementById("textToCipher").value;
-	var result = decipher(strToCipher, key);
-	
-	var box = document.getElementById('cipher');
-	box.value = result;
-		
+function decipher(strCharCode, keyCharCode) {
+	return ((((strCharCode - keyCharCode) % 26) + 26) % 26) + 65;;
 }
 
 function work() {
 	
 	if (!$("input[name='method']:checked").val()) {
-		alert("CHOOSE A FUCKING METHOD");
+		alert("Please, choose a crypting method");
 		return;
 	}
 	
 	if (!$("input[name='action']:checked").val()) {
-		alert("WHAT DO U WANT TO DO FUCKER??");
+		alert("Please, select if you want to cipher or decipher");
 		return;
 	}
 	
 	if (!$("input[name='message']").val()) {
-		alert("cmon man");
+		alert("Please, write the message you want to encrypt/decrypt");
 		$("input[name='message']").focus();
 		return;
 	}
@@ -99,7 +54,7 @@ function work() {
 	
 	if(method == 'vigenere') {
 		if (!$("input[name='key']").val()) {
-			alert("fuck a key");
+			alert("Sorry, we need a key to proceed");
 			$("input[name='key']").focus();
 			return;
 		}
@@ -109,47 +64,61 @@ function work() {
 	
 	var text = document.getElementById("textToCipher").value;
 	var result = "";
+
+	var DECIPHER = 0;
+	var CIPHER = 1;
 	
 	if(method == 'caesar') {
 		var e = document.getElementById("offset");
 		var shiftNumber = parseInt(e.options[e.selectedIndex].value);
 		var key = String.fromCharCode(shiftNumber + 65);
 		if(action == 'cipher') {
-			result = cipher(text.toUpperCase(), key.toUpperCase());
+			result = process(text.toUpperCase(), key.toUpperCase(), CIPHER);
 		} else {
-			result = decipher(text.toUpperCase(), key.toUpperCase());
+			result = process(text.toUpperCase(), key.toUpperCase(), DECIPHER);
 		}
 	} else if(method == 'vigenere') {
 		var key = document.getElementsByName('key')[0].value;
 		if(action == 'cipher') {
-			result = cipher(text.toUpperCase(), key.toUpperCase());
+			result = process(text.toUpperCase(), key.toUpperCase(), CIPHER);
 		} else {
-			result = decipher(text.toUpperCase(), key.toUpperCase());
+			result = process(text.toUpperCase(), key.toUpperCase(), DECIPHER);
 		}
 	}
 	
-	var box = document.getElementById('result');
-	box.value = result;
+	return result;
 	
 }
 
 function about() {
-	alert("Kevin Amorim");
+	alert("Kevin Amorim @ 2015");
+}
+
+function update() {
+	var result = "";
+	if($("input[name='message']").val())
+		result = work();
+
+	$("input[name='result']").val(result);
 }
 
 $(document).ready(function () {
-	$('#textToCipher').keypress(function(e){
-	  if(e.keyCode==13)
-	  $('#work').click();
-	});
-	
+
 	$("input:text").focus(function() { $(this).select(); } );
 	$("#textToCipher").keyup(function() {
-		if($("input[name='message']").val())
-			work();
-		else
-			var box = document.getElementById('result');
-			box.value = "";
+		update();
 	});
+
+	$('input[type=radio][name=action]').change(function() {
+		update();
+	});
+
+	$('input[type=radio][name=method]').change(function() {
+		if($('input[type=radio][name=method]:checked').val() == 'caesar')
+			update();
+		else
+			$("input[name='result']").val("");
+	});
+
 });
 

@@ -1,0 +1,102 @@
+html {
+	height:100%;
+	text-transform: lowercase;
+}
+
+body {
+	width: 100%;
+	margin-top: 10px;
+	text-align: center;
+	border-top: 5px solid #585858;
+	background-color: black;
+	color: white;
+	font-family: 'Ubuntu', sans-serif;
+	height: 100%;
+}
+
+#wrapper {
+	min-height:100%;
+	position:relative;
+}
+
+#content {
+	width: 60%;
+	margin: auto;
+	padding: auto;
+	padding-bottom:55px; /* Height of the footer element */
+}
+
+footer {
+	background: black;
+	color: green;
+	width:100%;
+	height: 50px;
+	position:absolute;
+	bottom:0;
+	left:0;
+	border-top: solid 1px #585858;
+	padding-top: 5px;
+}
+
+	a {
+		color: inherit;
+	}
+
+	a:hover {
+		font-size: 23px;
+	}
+
+header {
+	background:black;
+	color: green; 
+	margin-bottom: 20px;
+	padding: 20px;
+	margin-bottom: 100px;
+}
+
+h1 {
+	font-family: 'Ubuntu', sans-serif;
+	font-size: 40px;
+	margin-bottom: 20px;
+}
+
+h2 {
+	font-size: 15px;
+}
+
+input {
+	font-family: 'Open Sans', sans-serif;
+}
+
+input[type=text] {
+	width: 250px;
+	height: 30px;
+	font-weight: bold;
+	text-transform: uppercase;
+	text-align: center;
+}
+
+input[type=radio] {
+	margin: 10px;
+}
+
+select {
+	width: 250px;
+	height: 34px;
+	text-align: center;
+	font-size: 15px;
+}
+
+.box {
+	margin: 5px;
+	padding: 5px;
+	padding-bottom: 10px;
+	font-size: 25px;
+	border-radius: 5px;
+	border-top: solid 2px #585858;
+}
+
+#result {
+	margin: 10px;
+	width: 400px;
+}

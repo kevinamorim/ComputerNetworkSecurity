@@ -20,38 +20,47 @@
 
 <body>
 
-	<div id="wrap">
+	<div id="wrapper">
 	
 		<header>
-		<h1> Computer Network Security </h1>
-		<button type="button" onclick="about()">who did this shit?</button> 
+			<h1> Computer Network Security </h1>
+			<h2>{ old school } Text Cipher</h2>
 		</header>
 		
-		<div id="method" class="box">
-			<input type="radio" id="caesar" name="method" value="caesar" checked><label for="caesar">Caesar</label>
-			<input type="radio" id="vigenere" name="method" value="vigenere"><label for="vigenere">Vigenére</label>
-		</div>
+		<div id="content">
+
+			<div id="method" class="box">
+				<input type="radio" id="caesar" name="method" value="caesar" checked><label for="caesar">Caesar</label>
+				<input type="radio" id="vigenere" name="method" value="vigenere"><label for="vigenere">Vigenére</label>
+			</div>
 		
-		<div class="box">
-			<input type="radio" id="cipher" name="action" value="cipher" checked><label for="cipher">Cipher</label>
-			<input type="radio" id="decipher" name="action" value="decipher"><label for="decipher">Decipher</label>
+			<div class="box">
+				<input type="radio" id="cipher" name="action" value="cipher" checked><label for="cipher">Cipher</label>
+				<input type="radio" id="decipher" name="action" value="decipher"><label for="decipher">Decipher</label>
+			</div>
+
+			<div>
+				<input type="text" name="key" placeholder="Enter a key..." />
+				<select id="offset" name="offset">
+					<option value="1">1</option>
+					<option value="2">2</option>
+					<option value="3">3</option>
+					<option value="15">15</option>
+				</select>
+				<input type="text" name="message" id="textToCipher" placeholder="Choose cipher or decipher!!!"/>
+			</div>
+
+		
+			<div>
+				<input type="text" name="result" id="result" placeholder="Result" readonly />
+			</div>
+
 		</div>
 
-		<div>
-			<input type="text" name="key" placeholder="Enter a key..." />
-			<select id="offset" name="offset">
-				<option value="1">1</option>
-				<option value="2">2</option>
-				<option value="3">3</option>
-				<option value="15">15</option>
-			</select>
-			<input type="text" name="message" id="textToCipher" placeholder="Choose cipher or decipher!!!"/>
-		</div>
 
-		
-		<div>
-			<input type="text" name="result" id="result" placeholder="Result" readonly />
-		</div>
+		<footer>
+			<a href="https://pt.linkedin.com/in/kevinamorim4" target="_blank">\Kevin Amorim</a>
+		</footer>
 	
 	</div>
 	

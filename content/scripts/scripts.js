@@ -90,10 +90,6 @@ function work() {
 	
 }
 
-function about() {
-	alert("Kevin Amorim @ 2015");
-}
-
 function update() {
 	var result = "";
 	if($("input[name='message']").val())
@@ -106,6 +102,10 @@ $(document).ready(function () {
 
 	$("input:text").focus(function() { $(this).select(); } );
 	$("#textToCipher").keyup(function() {
+		update();
+	});
+
+	$("#offset").change(function() {
 		update();
 	});
 

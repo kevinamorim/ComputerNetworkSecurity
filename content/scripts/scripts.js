@@ -98,6 +98,29 @@ function update() {
 	$("input[name='result']").val(result);
 }
 
+function bruteForceAttack() {
+	
+	var cipherText = document.getElementById("textToCipher").value;
+    var $options = $("#brute-force-textarea");
+    
+    if(cipherText.length == 0) {
+        $options.html("CipherText cannot be empty!");
+        $options.attr("rows", 1);
+        return;
+    }
+    
+    var str = '';
+    
+    for(var offset = 1; offset <= 25; offset++) {
+        str += process(cipherText, offset, 0) + (offset < 25 ? '\n' : '');
+    }
+    
+    str += ''
+    $options.html(str);
+    $options.attr("rows", 25);
+	
+}
+
 $(document).ready(function () {
 
 	$("input:text").focus(function() { $(this).select(); } );
@@ -119,6 +142,10 @@ $(document).ready(function () {
 		else
 			$("input[name='result']").val("");
 	});
+	
+	$("#brute-force-attack").on("click", function() {
+        BruteForceAttack(String(cipherText.val()));
+    });
 
 });
 

@@ -43,7 +43,7 @@ footer {
 	}
 
 	a:hover {
-		font-size: 23px;
+		font-size: 17px;
 	}
 
 header {
@@ -99,4 +99,14 @@ select {
 #result {
 	margin: 10px;
 	width: 400px;
+}
+
+.answer {
+	margin-top: 2em;
+	margin-bottom: 1em;
+}
+
+.question {
+	font-weight: bold;
+	padding-bottom: 1em;
 }

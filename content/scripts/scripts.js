@@ -112,7 +112,8 @@ function bruteForceAttack() {
     var str = '';
     
     for(var offset = 1; offset <= 25; offset++) {
-        str += process(cipherText, offset, 0) + (offset < 25 ? '\n' : '');
+		var key = String.fromCharCode(offset + 65);
+        str += process(cipherText.toUpperCase(), key.toUpperCase(), 0) + (offset < 25 ? '\n' : '');
     }
     
     str += ''

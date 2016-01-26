@@ -144,7 +144,7 @@ $(document).ready(function () {
 	});
 	
 	$("#brute-force-attack").on("click", function() {
-        BruteForceAttack(String(cipherText.val()));
+        bruteForceAttack(String(cipherText.val()));
     });
 
 });

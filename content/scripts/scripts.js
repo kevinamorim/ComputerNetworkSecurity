@@ -1,3 +1,11 @@
+function cipher(strCharCode, keyCharCode) {
+	return ((strCharCode + keyCharCode) % 26) + 65;
+}
+
+function decipher(strCharCode, keyCharCode) {
+	return ((((strCharCode - keyCharCode) % 26) + 26) % 26) + 65;
+}
+
 // str  -> String to process
 // key  -> Key used to cipher/decipher
 // mode -> 0 - decipher ; 1 - cipher
@@ -8,7 +16,9 @@ function process(str, key, mode) {
 	for(var i = 0; i < str.length; i++) {
 
 		var charCodeOriginal = str.charCodeAt(i);
-		if(charCodeOriginal < 65 || charCodeOriginal > 90) continue;
+		if(charCodeOriginal < 65 || charCodeOriginal > 90) {
+			continue;
+		}
 
 		var keyCode = key.charCodeAt(k % key.length) - 65;
 		k++;
@@ -22,14 +32,6 @@ function process(str, key, mode) {
 	
 	return result;
 	
-}
-
-function cipher(strCharCode, keyCharCode) {
-	return ((strCharCode + keyCharCode) % 26) + 65;;
-}
-
-function decipher(strCharCode, keyCharCode) {
-	return ((((strCharCode - keyCharCode) % 26) + 26) % 26) + 65;;
 }
 
 function work() {
@@ -52,7 +54,7 @@ function work() {
 	
 	var method = document.querySelector('input[name="method"]:checked').value;
 	
-	if(method == 'vigenere') {
+	if(method === 'vigenere') {
 		if (!$("input[name='key']").val()) {
 			alert("Sorry, we need a key to proceed");
 			$("input[name='key']").focus();
@@ -60,7 +62,7 @@ function work() {
 		}
 	}
 	
-	var action = document.querySelector('input[name="action"]:checked').value;
+	var action = document.querySelector("input[name="action"]:checked").value;
 	
 	var text = document.getElementById("textToCipher").value;
 	var result = "";
@@ -68,7 +70,7 @@ function work() {
 	var DECIPHER = 0;
 	var CIPHER = 1;
 	
-	if(method == 'caesar') {
+	if(method === 'caesar') {
 		var e = document.getElementById("offset");
 		var shiftNumber = parseInt(e.options[e.selectedIndex].value);
 		var key = String.fromCharCode(shiftNumber + 65);
